@@ -30,6 +30,12 @@ public class Bookmark {
     @Column(nullable = false)
     private String y;
 
+    @Column(nullable = false)
+    private String city;
+
+    @Column(nullable = false)
+    private String img_url;
+
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id", nullable = false)
     private User user;
