@@ -5,11 +5,11 @@ import org.springframework.http.HttpStatus;
 
 @Getter
 public class MsgResponseDto {
-    private String message;
+    private int statusCode;
+    private String msg;
 
-    private int status;
-    public MsgResponseDto(String message,int status) {
-        this.message = message;
-        this.status = status;
+    public MsgResponseDto(int statusCode, String msg){
+        this.statusCode = statusCode;
+        this.msg = msg;
     }
 }

@@ -1,6 +1,7 @@
 package com.sparta.travel.domain.entity;
 
 import com.sparta.travel.domain.jwt.UserRoleEnum;
+import com.sparta.travel.domain.dto.ProfileRequestDto;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -38,6 +39,12 @@ public class User {
         this.role = role;
         this.email = email;
         this.nickname = nickname;
+    }
+
+    public void update(ProfileRequestDto requestDto) {
+        this.password = requestDto.getPassword();
+        this.email = requestDto.getEmail();
+        this.nickname = requestDto.getNickname();
     }
 
 }

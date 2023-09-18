@@ -1,6 +1,7 @@
 package com.sparta.travel.domain.service;
 
 import com.sparta.travel.domain.dto.MsgResponseDto;
+import com.sparta.travel.domain.dto.ProfileRequestDto;
 import com.sparta.travel.domain.dto.SignupRequestDto;
 import com.sparta.travel.domain.entity.User;
 import com.sparta.travel.domain.jwt.UserRoleEnum;
@@ -12,10 +13,12 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Optional;
 
 @Service
+@Transactional
 @RequiredArgsConstructor
 public class UserService {
     private final UserRepository userRepository;
@@ -45,16 +48,27 @@ public class UserService {
         UserRoleEnum role = UserRoleEnum.USER;
         User user = new User(userId,password,role,email,nickname);
         userRepository.save(user);
-        return new MsgResponseDto("회원가입 성공", HttpServletResponse.SC_OK);
+        return new MsgResponseDto(HttpServletResponse.SC_OK, "회원가입 성공");
     }
 
     public MsgResponseDto deleteUser(User user) {
         Optional<User> checkUser = userRepository.findByUserId(user.getUserId());
-        if(checkUser.isEmpty()){
+        if (checkUser.isEmpty()) {
             throw new CustomException(ErrorCode.ID_NOT_FOUND);
         }
         userRepository.delete(user);
-        return new MsgResponseDto("회원탈퇴 성공", HttpServletResponse.SC_OK);
+        return new MsgResponseDto(HttpServletResponse.SC_OK, "회원탈퇴 성공");
 
     }
+    public MsgResponseDto updateProfile(ProfileRequestDto requestDto, User user) {
+        boolean chkUser = userRepository.findAllByUserId(user.getUserId());
+        if (chkUser) {
+            user.update(requestDto);
+        } else {
+            throw new CustomException(ErrorCode.ID_NOT_FOUND);
+        }
+
+        return new MsgResponseDto(HttpServletResponse.SC_OK, "프로필수정이 성공했습니다.");
+    }
 }
+
