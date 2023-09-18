@@ -30,6 +30,6 @@ public class Plan {
     @JoinColumn(name = "user_id")
     private User user;
 
-    @OneToMany(mappedBy = "plan", cascade = {CascadeType.PERSIST})
+    @OneToMany(mappedBy = "plan", cascade = {CascadeType.REMOVE})
     private List<Place> placeList = new ArrayList<>();
 }
