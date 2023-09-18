@@ -48,7 +48,7 @@ public class UserService {
         UserRoleEnum role = UserRoleEnum.USER;
         User user = new User(userId,password,role,email,nickname);
         userRepository.save(user);
-        return new MsgResponseDto(HttpServletResponse.SC_OK, "회원가입 성공");
+        return new MsgResponseDto(HttpServletResponse.SC_OK, "회원가입이 성공했습니다.");
     }
 
     public MsgResponseDto deleteUser(User user) {
@@ -57,7 +57,7 @@ public class UserService {
             throw new CustomException(ErrorCode.ID_NOT_FOUND);
         }
         userRepository.delete(user);
-        return new MsgResponseDto(HttpServletResponse.SC_OK, "회원탈퇴 성공");
+        return new MsgResponseDto(HttpServletResponse.SC_OK, "탈퇴가 완료됐습니다.");
 
     }
     public MsgResponseDto updateProfile(ProfileRequestDto requestDto, User user) {

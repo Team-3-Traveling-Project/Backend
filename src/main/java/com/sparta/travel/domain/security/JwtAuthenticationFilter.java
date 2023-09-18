@@ -57,7 +57,7 @@ public class JwtAuthenticationFilter extends UsernamePasswordAuthenticationFilte
         response.setStatus(HttpServletResponse.SC_OK); // 상태코드 반환
         response.setContentType("application/json;charset=UTF-8"); // JSON 형식으로 반환
 
-        MsgResponseDto responseBody = new MsgResponseDto("로그인 성공", HttpServletResponse.SC_OK);
+        MsgResponseDto responseBody = new MsgResponseDto(HttpServletResponse.SC_OK,"로그인 성공했습니다.");
 
         ObjectMapper objectMapper = new ObjectMapper(); // JSON 문자열로 바꿈
         String responseBodyToJson = objectMapper.writeValueAsString(responseBody);
@@ -70,7 +70,7 @@ public class JwtAuthenticationFilter extends UsernamePasswordAuthenticationFilte
         response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
         response.setContentType("application/json;charset=UTF-8"); // JSON 형식으로 반환
 
-        MsgResponseDto responseBody = new MsgResponseDto("로그인 실패", HttpServletResponse.SC_UNAUTHORIZED);
+        MsgResponseDto responseBody = new MsgResponseDto(HttpServletResponse.SC_UNAUTHORIZED,"로그인 실패하였습니다.");
 
         ObjectMapper objectMapper = new ObjectMapper(); // JSON 문자열로 바꿈
         String responseBodyToJson = objectMapper.writeValueAsString(responseBody);
