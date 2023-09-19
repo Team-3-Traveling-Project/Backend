@@ -25,6 +25,12 @@ public class PlanService {
     private final PlaceRepository placeRepository;
 
     public MsgResponseDto createPlan(PlanRequestDto requestDto, User user) {
+        if(requestDto.getId() != null) {
+            Plan DelPlan = planRepository.findById(requestDto.getId()).orElseThrow(() ->
+                    new CustomException(ErrorCode.PLAN_NOT_FOUND)
+            );
+            planRepository.delete(DelPlan);
+        }
         Plan plan = planRepository.save(new Plan(requestDto, user));
         List<Place> placeList = new ArrayList<>();
         for(Place place : requestDto.getPlaceList()){
@@ -41,7 +47,7 @@ public class PlanService {
         return new MsgResponseDto(HttpServletResponse.SC_OK, "여행일정 저장 성공했습니다.");
     }
 
-    public List<PlanResponseDto> getPlan(String userId, User user) {
+    public List<PlanResponseDto> getPlan(User user) {
         List<Plan> planList = planRepository.findByUser(user);
         List<PlanResponseDto> placeList = new ArrayList<>();
 
@@ -53,6 +59,17 @@ public class PlanService {
                         placeRepository.findByPlanId(plan.getId()).stream().map(PlaceResponseDto::new).toList()));
             }
         }
+
+        return placeList;
+    }
+
+    public List<PlanResponseDto> getOnePlan(Long planId, User user) {
+        Plan planList = planRepository.findById(planId).orElseThrow(() ->
+                new CustomException(ErrorCode.PLAN_NOT_FOUND));
+        List<PlanResponseDto> placeList = new ArrayList<>();
+
+        placeList.add(new PlanResponseDto(planList, user.getUserId(),
+                placeRepository.findByPlanId(planList.getId()).stream().map(PlaceResponseDto::new).toList()));
 
         return placeList;
     }
@@ -79,4 +96,6 @@ public class PlanService {
         planRepository.delete(plan);
         return new MsgResponseDto(HttpServletResponse.SC_OK, "여행일정 삭제 성공했습니다.");
     }
+
+
 }

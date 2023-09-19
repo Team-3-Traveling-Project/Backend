@@ -21,9 +21,13 @@ public class PlanController {
         return planService.createPlan(requestDto, userDetails.getUser());
     }
 
-    @GetMapping("/mytravel/{userId}")
-    public List<PlanResponseDto> getPlan(@PathVariable String userId, @AuthenticationPrincipal UserDetailsImpl userDetails) {
-        return planService.getPlan(userId, userDetails.getUser());
+    @GetMapping("/mytravel")
+    public List<PlanResponseDto> getPlan(@AuthenticationPrincipal UserDetailsImpl userDetails) {
+        return planService.getPlan(userDetails.getUser());
+    }
+    @GetMapping("/mytravel/{planId}")
+    public List<PlanResponseDto> getOnePlan(@PathVariable Long planId, @AuthenticationPrincipal UserDetailsImpl userDetails) {
+        return planService.getOnePlan(planId, userDetails.getUser());
     }
 
     @PutMapping("/schedule/{plan_id}")

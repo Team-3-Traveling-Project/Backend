@@ -9,6 +9,7 @@ import java.util.List;
 
 @Getter
 public class PlanRequestDto {
+    private Long id;
     private String userId;
     private LocalDate date;
     private String city;
