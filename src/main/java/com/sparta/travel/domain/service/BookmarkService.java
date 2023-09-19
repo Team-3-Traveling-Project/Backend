@@ -20,7 +20,7 @@ import java.util.Optional;
 @Service
 @RequiredArgsConstructor
 public class BookmarkService {
-   private final BookmarkRepository bookmarkRepository;
+    private final BookmarkRepository bookmarkRepository;
    private final UserRepository userRepository;
 
     public List<BookmarkResponseDto> getAllBookmark(User user) {
@@ -37,13 +37,27 @@ public class BookmarkService {
         return dtoList;
     }
 
+    public List<BookmarkResponseDto> getCityBookMark(String city, User user) {
+        // 사용자 확인
+        checkUser(user);
+
+        List<Bookmark> bookmarkList = bookmarkRepository.findByUserAndCity(user,city);
+        List<BookmarkResponseDto> cityDtoList = new ArrayList<>();
+        for(Bookmark bookmark:bookmarkList){
+            BookmarkResponseDto bookmarkResponseDto =new BookmarkResponseDto(bookmark);
+            cityDtoList.add(bookmarkResponseDto);
+        }
+
+        return cityDtoList;
+
+    }
+
     public MsgResponseDto createBookMark(BookmarkRequestDto bookmarkRequestDto, User user) {
         Bookmark bookmark = new Bookmark(bookmarkRequestDto,user);
         bookmarkRepository.save(bookmark);
 
         return new MsgResponseDto(HttpServletResponse.SC_OK,"저장에 성공했습니다.");
     }
-
     public MsgResponseDto deleteBookMark(Long id, User user) {
         Bookmark bookmark = bookmarkRepository.findById(id)
                 .orElseThrow(() ->  new CustomException(ErrorCode.BOOKMARK_NOT_FOUND));
@@ -54,6 +68,7 @@ public class BookmarkService {
 
         return new MsgResponseDto(HttpServletResponse.SC_OK,"삭제 성공했습니다.");
     }
+
     public void checkUser(User user){
         Optional<User> checkUser = userRepository.findByUserId(user.getUserId());
         if (checkUser.isEmpty()) {

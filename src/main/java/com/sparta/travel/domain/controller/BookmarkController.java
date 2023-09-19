@@ -24,6 +24,11 @@ public class BookmarkController {
         return ResponseEntity.ok(bookmarkService.getAllBookmark(userDetails.getUser()));
     }
 
+    @GetMapping ("/bookmark/{city}")
+    public ResponseEntity<List<BookmarkResponseDto>>getCityBookMark(@PathVariable String city, @AuthenticationPrincipal UserDetailsImpl userDetails){
+        return ResponseEntity.ok(bookmarkService.getCityBookMark(city, userDetails.getUser()));
+    }
+
     @PostMapping("/bookmark")
     public ResponseEntity<MsgResponseDto>createBookMark(@RequestBody BookmarkRequestDto bookmarkRequestDto, @AuthenticationPrincipal UserDetailsImpl userDetails){
         return ResponseEntity.ok(bookmarkService.createBookMark(bookmarkRequestDto, userDetails.getUser()));
