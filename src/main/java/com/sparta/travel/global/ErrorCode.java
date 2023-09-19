@@ -15,6 +15,7 @@ public enum ErrorCode {
     DUPLICATED_EMAIL(HttpStatus.BAD_REQUEST, "중복된 이메일입니다."),
     DUPLICATED_NICKNAME(HttpStatus.BAD_REQUEST, "중복된 닉네임입니다."),
     ADMINTOKEN_NOT_MATCH(HttpStatus.BAD_REQUEST, "관리자 패스워드가 일치하지 않습니다."),
+    PLAN_NOT_FOUND(HttpStatus.BAD_REQUEST, "없는 여행일정입니다."),
     PASSWORD_NOT_MATCH(HttpStatus.BAD_REQUEST, "잘못된 패스워드입니다.");
 
     private final HttpStatus statusCode;;

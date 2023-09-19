@@ -35,7 +35,6 @@ public class UserController {
 
     @PutMapping("/user/updateprofile")
     public ResponseEntity<MsgResponseDto> updateProfile(@Valid @RequestBody ProfileRequestDto requestDto,@AuthenticationPrincipal UserDetailsImpl userDetails) {
-          return ResponseEntity.ok(userService.updateProfile(requestDto,userDetails.getUser()));
-
+        return ResponseEntity.ok(userService.updateProfile(requestDto, userDetails.getUser()));
     }
 }

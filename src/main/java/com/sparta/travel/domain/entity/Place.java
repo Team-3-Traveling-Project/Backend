@@ -3,25 +3,26 @@ package com.sparta.travel.domain.entity;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 @Entity
 @Table(name = "place")
 @Getter
+@Setter
 @NoArgsConstructor
-
 public class Place {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private  Long id;
 
     @Column(name = "placeName",nullable = false)
-    private String placeName;
+    private String place_name;
 
     @Column(name = "addressName", nullable = false)
-    private String addressName;
+    private String address_name;
 
     @Column(name = "roadAddressName", nullable = false)
-    private String roadAddressName;
+    private String road_address_name;
 
     @Column(name = "x", nullable = false)
     private String x;

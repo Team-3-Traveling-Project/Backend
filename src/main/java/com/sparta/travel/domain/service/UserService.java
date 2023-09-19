@@ -67,17 +67,12 @@ public class UserService {
     }
 
     public MsgResponseDto updateProfile(ProfileRequestDto requestDto, User user) {
-
         User updateUser = checkUser(user);
-
         String password = passwordEncoder.encode(requestDto.getPassword());
-
         String email = requestDto.getEmail();
         checkEmail(email); // 이메일 중복확인
-
         String nickname = requestDto.getNickname();
         checkNickname(nickname); // 닉네임 중복확인
-
 
         updateUser.update(password,email,nickname);
 

@@ -12,6 +12,5 @@ public class PlanRequestDto {
     private String userId;
     private LocalDate date;
     private String city;
-    private User user;
     private List<Place> placeList;
 }
