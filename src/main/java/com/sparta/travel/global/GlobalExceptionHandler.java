@@ -12,8 +12,7 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
 
         ErrorCode errorCode = e.getErrorCode();
         return ResponseEntity
-                .status(errorCode.getHttpStatus())
+                .status(errorCode.getStatusCode())
                 .body(new ErrorResponse(errorCode));
-
     }
 }

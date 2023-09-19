@@ -1,5 +1,6 @@
 package com.sparta.travel.domain.entity;
 
+import com.sparta.travel.domain.dto.BookmarkRequestDto;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -16,13 +17,13 @@ public class Bookmark {
     private Long id;
 
     @Column(nullable = false)
-    private String placeName;
+    private String place_name;
 
     @Column(nullable = false)
-    private String addressName;
+    private String address_name;
 
     @Column(nullable = false)
-    private String roadName;
+    private String road_address_name;
 
     @Column(nullable = false)
     private String x;
@@ -40,4 +41,14 @@ public class Bookmark {
     @JoinColumn(name = "user_id", nullable = false)
     private User user;
 
+    public Bookmark(BookmarkRequestDto bookmarkRequestDto,User user){
+        this.place_name = bookmarkRequestDto.getPlace_name();
+        this.address_name = bookmarkRequestDto.getAddress_name();
+        this.road_address_name = bookmarkRequestDto.getRoad_address_name();
+        this.x = bookmarkRequestDto.getX();
+        this.y = bookmarkRequestDto.getY();
+        this.city = bookmarkRequestDto.getCity();
+        this.img_url = bookmarkRequestDto.getImg_url();
+        this.user = user;
+    }
 }
