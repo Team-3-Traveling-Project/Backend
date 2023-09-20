@@ -24,7 +24,7 @@ public class PlanService {
     private final PlanRepository planRepository;
     private final PlaceRepository placeRepository;
 
-    public MsgResponseDto createPlan(PlanRequestDto requestDto, User user) {
+    public PlanMsgResponseDto createPlan(PlanRequestDto requestDto, User user) {
         if(requestDto.getId() != null) {
             Plan DelPlan = planRepository.findById(requestDto.getId()).orElseThrow(() ->
                     new CustomException(ErrorCode.PLAN_NOT_FOUND)
@@ -44,7 +44,7 @@ public class PlanService {
             placeRepository.saveAll(placeList);
         }
 
-        return new MsgResponseDto(HttpServletResponse.SC_OK, "여행일정 저장 성공했습니다.");
+        return new PlanMsgResponseDto(HttpServletResponse.SC_OK, "여행일정 저장 성공했습니다.", plan.getId());
     }
 
     public List<PlanResponseDto> getPlan(User user) {
