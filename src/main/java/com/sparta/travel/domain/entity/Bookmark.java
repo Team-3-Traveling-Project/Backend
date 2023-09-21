@@ -35,6 +35,9 @@ public class Bookmark {
     private String city;
 
     @Column(nullable = false)
+    private String group_name;
+
+    @Column(nullable = false)
     private String img_url;
 
     @ManyToOne(fetch = FetchType.LAZY)
@@ -49,6 +52,8 @@ public class Bookmark {
         this.y = bookmarkRequestDto.getY();
         this.city = bookmarkRequestDto.getCity();
         this.img_url = bookmarkRequestDto.getImg_url();
+        this.group_name = (bookmarkRequestDto.getGroup_name()==null||bookmarkRequestDto.getGroup_name().isEmpty())?"기타": bookmarkRequestDto.getGroup_name();
         this.user = user;
     }
+
 }

@@ -35,6 +35,9 @@ public class PlanService {
         List<Place> placeList = new ArrayList<>();
         for(Place place : requestDto.getPlaceList()){
             place.setPlan(plan);
+            if(place.getGroup_name()==null||place.getGroup_name().isEmpty()) {
+                place.setGroup_name("기타");
+            }
             placeList.add(place);
         }
 
@@ -83,6 +86,9 @@ public class PlanService {
 
         for(Place place : requestDto.getPlaceList()){
             place.setPlan(plan);
+            if(place.getGroup_name()==null||place.getGroup_name().isEmpty()) {
+                place.setGroup_name("기타");
+            }
             placeRepository.save(place);
         }
 

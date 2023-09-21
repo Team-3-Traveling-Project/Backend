@@ -2,6 +2,7 @@ package com.sparta.travel.domain.controller;
 
 import com.sparta.travel.domain.dto.BookmarkRequestDto;
 import com.sparta.travel.domain.dto.BookmarkResponseDto;
+import com.sparta.travel.domain.dto.BookmarkTotalResponseDto;
 import com.sparta.travel.domain.dto.MsgResponseDto;
 import com.sparta.travel.domain.security.UserDetailsImpl;
 import com.sparta.travel.domain.service.BookmarkService;
@@ -20,12 +21,12 @@ public class BookmarkController {
     private final BookmarkService bookmarkService;
 
     @GetMapping("/bookmark")
-    public ResponseEntity<List<BookmarkResponseDto>>getAllBookMark(@AuthenticationPrincipal UserDetailsImpl userDetails){
+    public ResponseEntity<BookmarkTotalResponseDto> getAllBookMark(@AuthenticationPrincipal UserDetailsImpl userDetails){
         return ResponseEntity.ok(bookmarkService.getAllBookmark(userDetails.getUser()));
     }
 
     @GetMapping ("/bookmark/{city}")
-    public ResponseEntity<List<BookmarkResponseDto>>getCityBookMark(@PathVariable String city, @AuthenticationPrincipal UserDetailsImpl userDetails){
+    public ResponseEntity<BookmarkTotalResponseDto>getCityBookMark(@PathVariable String city, @AuthenticationPrincipal UserDetailsImpl userDetails){
         return ResponseEntity.ok(bookmarkService.getCityBookMark(city, userDetails.getUser()));
     }
 

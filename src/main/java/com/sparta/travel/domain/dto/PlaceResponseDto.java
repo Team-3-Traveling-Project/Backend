@@ -11,6 +11,7 @@ public class PlaceResponseDto {
     private String road_address_name;
     private String x;
     private String y;
+    private String group_name;
     private String img_url;
 
 
@@ -21,6 +22,7 @@ public class PlaceResponseDto {
         this.road_address_name = place.getRoad_address_name();
         this.x = place.getX();
         this.y = place.getY();
+        this.group_name = place.getGroup_name();
         this.img_url = place.getImg_url();
     }
 }

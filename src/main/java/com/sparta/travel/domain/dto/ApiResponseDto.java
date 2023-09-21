@@ -12,6 +12,7 @@ public class ApiResponseDto {
     private String road_address_name;
     private String x;
     private String y;
+    private String group_name;
     private String img_url;
 
 
@@ -24,6 +25,7 @@ public class ApiResponseDto {
         this.road_address_name = infoFromJson.getString("road_address_name");
         this.x = infoFromJson.getString("x");
         this.y = infoFromJson.getString("y");
+        this.group_name = infoFromJson.getString("category_group_name");
 
     }
 
@@ -33,6 +35,7 @@ public class ApiResponseDto {
         this.road_address_name = apiResponseDto.getRoad_address_name();
         this.x = apiResponseDto.getX();
         this.y = apiResponseDto.getY();
+        this.group_name = apiResponseDto.getGroup_name();
         this.img_url = infoFromJson.getString("image_url");
     }
 }

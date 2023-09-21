@@ -10,5 +10,6 @@ public class BookmarkRequestDto {
     private String x;
     private String y;
     private String city;
+    private String group_name;
     private String img_url;
 }

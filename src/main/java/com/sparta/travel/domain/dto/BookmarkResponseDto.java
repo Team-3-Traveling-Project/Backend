@@ -3,6 +3,8 @@ package com.sparta.travel.domain.dto;
 import com.sparta.travel.domain.entity.Bookmark;
 import lombok.Getter;
 
+import java.util.List;
+
 @Getter
 public class BookmarkResponseDto {
     private Long id;
@@ -12,8 +14,10 @@ public class BookmarkResponseDto {
     private String road_address_name;
     private String x;
     private String y;
+    private String group_name;
     private String image_url;
     private String city;
+
 
     public BookmarkResponseDto(Bookmark bookmark) {
         this.id = bookmark.getId();
@@ -23,6 +27,7 @@ public class BookmarkResponseDto {
         this.road_address_name = bookmark.getRoad_address_name();
         this.x = bookmark.getX();
         this.y = bookmark.getY();
+        this.group_name = bookmark.getGroup_name();
         this.image_url = bookmark.getImg_url();
         this.city = bookmark.getCity();
     }

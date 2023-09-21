@@ -33,6 +33,9 @@ public class Place {
     @Column(name = "img_url", nullable = false)
     private String img_url;
 
+    @Column(name = "group_name",nullable = false)
+    private String group_name;
+
     @ManyToOne
     @JoinColumn(name = "plan_id")
     private Plan plan;

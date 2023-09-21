@@ -18,6 +18,7 @@ public enum ErrorCode {
 
     private final HttpStatus statusCode;;
     private final String msg;
+    
 
     ErrorCode(HttpStatus statusCode, String msg) {
         this.statusCode = statusCode;
