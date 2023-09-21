@@ -1,5 +1,6 @@
 package com.sparta.travel.domain.dto;
 
+import com.sparta.travel.domain.entity.Place;
 import com.sparta.travel.domain.entity.Plan;
 import lombok.Getter;
 
@@ -21,7 +22,4 @@ public class PlanResponseDto {
         this.city = plan.getCity();
         this.placeList = list;
     }
-
-
-
 }

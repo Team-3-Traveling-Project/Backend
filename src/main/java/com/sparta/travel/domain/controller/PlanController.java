@@ -1,6 +1,7 @@
 package com.sparta.travel.domain.controller;
 
 import com.sparta.travel.domain.dto.MsgResponseDto;
+import com.sparta.travel.domain.dto.PlanMsgResponseDto;
 import com.sparta.travel.domain.dto.PlanRequestDto;
 import com.sparta.travel.domain.dto.PlanResponseDto;
 import com.sparta.travel.domain.security.UserDetailsImpl;
@@ -13,11 +14,12 @@ import java.util.List;
 
 @RestController
 @RequiredArgsConstructor
+@RequestMapping("/api")
 public class PlanController {
     private final PlanService planService;
 
     @PostMapping("/schedule")
-    public MsgResponseDto createPlan(@RequestBody PlanRequestDto requestDto, @AuthenticationPrincipal UserDetailsImpl userDetails){
+    public PlanMsgResponseDto createPlan(@RequestBody PlanRequestDto requestDto, @AuthenticationPrincipal UserDetailsImpl userDetails){
         return planService.createPlan(requestDto, userDetails.getUser());
     }
 
