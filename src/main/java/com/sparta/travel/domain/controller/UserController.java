@@ -1,6 +1,7 @@
 package com.sparta.travel.domain.controller;
 
 import com.sparta.travel.domain.dto.MsgResponseDto;
+import com.sparta.travel.domain.dto.ProfileResponseDto;
 import com.sparta.travel.domain.dto.SignupRequestDto;
 import com.sparta.travel.domain.security.UserDetailsImpl;
 import com.sparta.travel.domain.service.UserService;
@@ -32,6 +33,12 @@ public class UserController {
     public ResponseEntity<MsgResponseDto> deleteUser(@AuthenticationPrincipal UserDetailsImpl userDetails){
         return ResponseEntity.ok(userService.deleteUser(userDetails.getUser()));
     }
+
+    @GetMapping("/user/updateprofile")
+    public ProfileResponseDto getProfile(@AuthenticationPrincipal UserDetailsImpl userDetails) {
+        return userService.getProfile(userDetails.getUser());
+    }
+
 
     @PutMapping("/user/updateprofile")
     public ResponseEntity<MsgResponseDto> updateProfile(@Valid @RequestBody ProfileRequestDto requestDto,@AuthenticationPrincipal UserDetailsImpl userDetails) {

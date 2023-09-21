@@ -2,6 +2,7 @@ package com.sparta.travel.domain.service;
 
 import com.sparta.travel.domain.dto.MsgResponseDto;
 import com.sparta.travel.domain.dto.ProfileRequestDto;
+import com.sparta.travel.domain.dto.ProfileResponseDto;
 import com.sparta.travel.domain.dto.SignupRequestDto;
 import com.sparta.travel.domain.entity.Bookmark;
 import com.sparta.travel.domain.entity.Plan;
@@ -68,13 +69,12 @@ public class UserService {
 
     public MsgResponseDto updateProfile(ProfileRequestDto requestDto, User user) {
         User updateUser = checkUser(user);
-        String password = passwordEncoder.encode(requestDto.getPassword());
         String email = requestDto.getEmail();
         checkEmail(email); // 이메일 중복확인
         String nickname = requestDto.getNickname();
         checkNickname(nickname); // 닉네임 중복확인
 
-        updateUser.update(password,email,nickname);
+        updateUser.update(email,nickname);
 
         return new MsgResponseDto(HttpServletResponse.SC_OK, "프로필수정이 성공했습니다.");
     }
@@ -101,5 +101,10 @@ public class UserService {
         }
     }
 
+    public ProfileResponseDto getProfile(User user) {
+        User getUser = userRepository.findByUserId(user.getUserId()).
+                orElseThrow(() -> new CustomException(ErrorCode.ID_NOT_FOUND));
+        return new ProfileResponseDto(getUser);
+    }
 }
 

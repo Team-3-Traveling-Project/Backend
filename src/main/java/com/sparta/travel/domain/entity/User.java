@@ -40,8 +40,7 @@ public class User {
         this.nickname = nickname;
     }
 
-    public void update(String password,String email,String nickname) {
-        this.password = password;
+    public void update(String email,String nickname) {
         this.email = email;
         this.nickname = nickname;
     }
