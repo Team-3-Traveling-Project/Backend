@@ -32,6 +32,9 @@ public class User {
     @Column(nullable = false, unique = true)
     private String nickname;
 
+    @Column(unique = true)
+    private String profile_img_url;
+
     public User(String userId, String password, UserRoleEnum role,String email,String nickname) {
         this.userId = userId;
         this.password = password;
@@ -45,4 +48,7 @@ public class User {
         this.nickname = nickname;
     }
 
+    public void updateProfileImg(String fileName) {
+        this.profile_img_url = fileName;
+    }
 }

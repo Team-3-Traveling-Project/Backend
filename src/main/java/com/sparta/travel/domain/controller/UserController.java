@@ -1,8 +1,6 @@
 package com.sparta.travel.domain.controller;
 
-import com.sparta.travel.domain.dto.MsgResponseDto;
-import com.sparta.travel.domain.dto.ProfileResponseDto;
-import com.sparta.travel.domain.dto.SignupRequestDto;
+import com.sparta.travel.domain.dto.*;
 import com.sparta.travel.domain.security.UserDetailsImpl;
 import com.sparta.travel.domain.service.UserService;
 import jakarta.validation.Valid;
@@ -10,11 +8,13 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
-import com.sparta.travel.domain.dto.ProfileRequestDto;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.multipart.MultipartFile;
+
+import java.io.IOException;
 
 
 @RestController
@@ -43,5 +43,10 @@ public class UserController {
     @PutMapping("/user/updateprofile")
     public ResponseEntity<MsgResponseDto> updateProfile(@Valid @RequestBody ProfileRequestDto requestDto,@AuthenticationPrincipal UserDetailsImpl userDetails) {
         return ResponseEntity.ok(userService.updateProfile(requestDto, userDetails.getUser()));
+    }
+
+    @PostMapping("/user/updateImg")
+    public ProfileImgResponseDto updateProfileImg(@RequestParam(value = "image") MultipartFile image, @AuthenticationPrincipal UserDetailsImpl userDetails) throws IOException {
+        return userService.updateProfileImg(image, userDetails.getUser());
     }
 }
