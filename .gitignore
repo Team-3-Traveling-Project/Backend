@@ -5,6 +5,9 @@ build/
 !**/src/main/**/build/
 !**/src/test/**/build/
 
+## config.properties
+application.properties
+
 ### STS ###
 .apt_generated
 .classpath
@@ -18,7 +21,6 @@ bin/
 !**/src/test/**/bin/
 
 ### IntelliJ IDEA ###
-/src/main/resources/application.properties
 .idea
 *.iws
 *.iml

@@ -22,4 +22,11 @@ public class PlanResponseDto {
         this.city = plan.getCity();
         this.placeList = list;
     }
+
+    public PlanResponseDto(Plan plan, String userId) {
+        this.id = plan.getId();
+        this.userId = userId;
+        this.date = plan.getDate();
+        this.city = plan.getCity();
+    }
 }

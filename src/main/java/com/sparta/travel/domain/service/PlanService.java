@@ -58,8 +58,7 @@ public class PlanService {
             throw new CustomException(ErrorCode.PLAN_NOT_FOUND);
         } else {
             for(Plan plan : planList) {
-                placeList.add(new PlanResponseDto(plan, user.getUserId(),
-                        placeRepository.findByPlanId(plan.getId()).stream().map(PlaceResponseDto::new).toList()));
+                placeList.add(new PlanResponseDto(plan, user.getUserId()));
             }
         }
 
