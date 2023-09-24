@@ -22,39 +22,39 @@ import java.io.IOException;
 
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("/api")
+//@RequestMapping("/api")
 public class UserController {
 
     private final UserService userService;
     private final KakaoLoginService kakaoLoginService;
 
-    @PostMapping("/user/signup") //front랑 합칠 시 추후 변경
+    @PostMapping("/api/user/signup") //front랑 합칠 시 추후 변경
     public ResponseEntity<MsgResponseDto> signup(@Valid @RequestBody SignupRequestDto requestDto) {
         return ResponseEntity.ok(userService.signup(requestDto));
     }
 
-    @DeleteMapping("/user/userdel")
+    @DeleteMapping("/api/user/userdel")
     public ResponseEntity<MsgResponseDto> deleteUser(@AuthenticationPrincipal UserDetailsImpl userDetails){
         return ResponseEntity.ok(userService.deleteUser(userDetails.getUser()));
     }
 
-    @GetMapping("/user/updateprofile")
+    @GetMapping("/api/user/updateprofile")
     public ProfileResponseDto getProfile(@AuthenticationPrincipal UserDetailsImpl userDetails) {
         return userService.getProfile(userDetails.getUser());
     }
 
 
-    @PutMapping("/user/updateprofile")
+    @PutMapping("/api/user/updateprofile")
     public ResponseEntity<MsgResponseDto> updateProfile(@Valid @RequestBody ProfileRequestDto requestDto,@AuthenticationPrincipal UserDetailsImpl userDetails) {
         return ResponseEntity.ok(userService.updateProfile(requestDto, userDetails.getUser()));
     }
 
-    @PostMapping("/user/updateImg")
+    @PostMapping("/api/user/updateImg")
     public ProfileImgResponseDto updateProfileImg(@RequestParam(value = "image") MultipartFile image, @AuthenticationPrincipal UserDetailsImpl userDetails) throws IOException {
         return userService.updateProfileImg(image, userDetails.getUser());
     }
 
-    @GetMapping("user/login/kakao")
+    @GetMapping("/")
     public ResponseEntity<MsgResponseDto> kakaoLogin(@RequestParam String code, HttpServletResponse response) throws JsonProcessingException {
         return ResponseEntity.ok(kakaoLoginService.kakaoLogin(code, response));
     }
