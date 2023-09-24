@@ -41,7 +41,7 @@ public class S3Uploader {
         return uploadImageUrl;
     }
 
-    private String putS3(File uploadFile, String fileName) {
+    private String putS3(File uploadFile, String fileName) { // S3에 이미지 파일 넣기
         amazonS3Client.putObject(new PutObjectRequest(bucket, fileName, uploadFile).withCannedAcl(CannedAccessControlList.PublicRead));
         return amazonS3Client.getUrl(bucket, fileName).toString();
     }

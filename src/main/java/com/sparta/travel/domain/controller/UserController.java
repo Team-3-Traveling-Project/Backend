@@ -1,8 +1,11 @@
 package com.sparta.travel.domain.controller;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
 import com.sparta.travel.domain.dto.*;
 import com.sparta.travel.domain.security.UserDetailsImpl;
+import com.sparta.travel.domain.service.KakaoLoginService;
 import com.sparta.travel.domain.service.UserService;
+import jakarta.servlet.http.HttpServletResponse;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -23,6 +26,7 @@ import java.io.IOException;
 public class UserController {
 
     private final UserService userService;
+    private final KakaoLoginService kakaoLoginService;
 
     @PostMapping("/user/signup") //front랑 합칠 시 추후 변경
     public ResponseEntity<MsgResponseDto> signup(@Valid @RequestBody SignupRequestDto requestDto) {
@@ -48,5 +52,10 @@ public class UserController {
     @PostMapping("/user/updateImg")
     public ProfileImgResponseDto updateProfileImg(@RequestParam(value = "image") MultipartFile image, @AuthenticationPrincipal UserDetailsImpl userDetails) throws IOException {
         return userService.updateProfileImg(image, userDetails.getUser());
+    }
+
+    @GetMapping("user/login/kakao")
+    public ResponseEntity<MsgResponseDto> kakaoLogin(@RequestParam String code, HttpServletResponse response) throws JsonProcessingException {
+        return ResponseEntity.ok(kakaoLoginService.kakaoLogin(code, response));
     }
 }
