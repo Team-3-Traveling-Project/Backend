@@ -68,6 +68,7 @@ public class UserController {
     @GetMapping("/api/user/kakao/callback")
     @CrossOrigin(origins = "http://localhost:3000", exposedHeaders = "Authorization")
     public ResponseEntity<Void> kakaoLogin(@RequestParam String code, HttpServletResponse response) throws JsonProcessingException {
+
         String token = kakaoLoginService.kakaoLogin(code);
         HttpHeaders headers = new HttpHeaders();
         headers.add(JwtUtil.AUTHORIZATION_HEADER, token);

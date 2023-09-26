@@ -1,6 +1,5 @@
 package com.sparta.travel.domain.dto;
 
-import com.sparta.travel.domain.entity.Place;
 import com.sparta.travel.domain.entity.Plan;
 import lombok.Getter;
 
@@ -13,6 +12,7 @@ public class PlanResponseDto {
     private String userId;
     private LocalDate date;
     private String city;
+    private String cityimgUrl;
     private List<PlaceResponseDto> placeList;
 
     public PlanResponseDto(Plan plan, String userId, List<PlaceResponseDto> list) {
@@ -23,10 +23,11 @@ public class PlanResponseDto {
         this.placeList = list;
     }
 
-    public PlanResponseDto(Plan plan, String userId) {
+    public PlanResponseDto(Plan plan, String userId, String cityImgUrl) {
         this.id = plan.getId();
         this.userId = userId;
         this.date = plan.getDate();
         this.city = plan.getCity();
+        this.cityimgUrl = cityImgUrl;
     }
 }

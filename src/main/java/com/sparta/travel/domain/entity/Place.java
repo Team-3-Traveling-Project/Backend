@@ -30,7 +30,7 @@ public class Place {
     @Column(name = "y", nullable = false)
     private String y;
 
-    @Column(name = "img_url", nullable = false)
+    @Column(name = "img_url", nullable = false, length = 1000)
     private String img_url;
 
     @Column(name = "group_name",nullable = false)
@@ -39,6 +39,4 @@ public class Place {
     @ManyToOne
     @JoinColumn(name = "plan_id")
     private Plan plan;
-
-
 }

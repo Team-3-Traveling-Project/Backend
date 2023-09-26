@@ -1,9 +1,11 @@
 package com.sparta.travel.domain.service;
 
 import com.sparta.travel.domain.dto.*;
+import com.sparta.travel.domain.entity.Cityimg;
 import com.sparta.travel.domain.entity.Place;
 import com.sparta.travel.domain.entity.Plan;
 import com.sparta.travel.domain.entity.User;
+import com.sparta.travel.domain.repository.CityimgRepository;
 import com.sparta.travel.domain.repository.PlaceRepository;
 import com.sparta.travel.domain.repository.PlanRepository;
 import com.sparta.travel.global.CustomException;
@@ -23,6 +25,7 @@ public class PlanService {
 
     private final PlanRepository planRepository;
     private final PlaceRepository placeRepository;
+    private final CityimgRepository cityimgRepository;
 
     public PlanMsgResponseDto createPlan(PlanRequestDto requestDto, User user) {
         if(requestDto.getId() != null) {
@@ -58,7 +61,8 @@ public class PlanService {
             throw new CustomException(ErrorCode.PLAN_NOT_FOUND);
         } else {
             for(Plan plan : planList) {
-                placeList.add(new PlanResponseDto(plan, user.getUserId()));
+                Cityimg cityimg = cityimgRepository.findByName(plan.getCity());
+                placeList.add(new PlanResponseDto(plan, user.getUserId(), cityimg.getImg_url()));
             }
         }
 
