@@ -13,7 +13,10 @@ import lombok.Setter;
 public class Place {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private  Long id;
+    private Long id;
+
+    @Column(nullable = false)
+    private String place_id;
 
     @Column(name = "placeName",nullable = false)
     private String place_name;

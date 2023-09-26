@@ -5,7 +5,8 @@ import lombok.Getter;
 
 @Getter
 public class PlaceRequestDto {
-    private  Long id;
+    private Long id;
+    private String place_id;
     private String place_name;
     private String address_name;
     private String road_address_name;
