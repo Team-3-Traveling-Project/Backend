@@ -37,7 +37,7 @@ public class Bookmark {
     @Column(nullable = false)
     private String group_name;
 
-    @Column(nullable = false)
+    @Column(nullable = false,length = 1000)
     private String img_url;
 
     @ManyToOne(fetch = FetchType.LAZY)

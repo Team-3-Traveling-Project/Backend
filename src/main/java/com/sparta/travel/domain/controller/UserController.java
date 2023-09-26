@@ -6,17 +6,20 @@ import com.sparta.travel.domain.jwt.JwtUtil;
 import com.sparta.travel.domain.security.UserDetailsImpl;
 import com.sparta.travel.domain.service.KakaoLoginService;
 import com.sparta.travel.domain.service.UserService;
+
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpHeaders;
+
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
@@ -29,6 +32,7 @@ public class UserController {
 
     private final UserService userService;
     private final KakaoLoginService kakaoLoginService;
+   
 
     @PostMapping("/api/user/signup") //front랑 합칠 시 추후 변경
     @ResponseBody
@@ -61,11 +65,17 @@ public class UserController {
         return userService.updateProfileImg(image, userDetails.getUser());
     }
 
-    @GetMapping("/user/kakao/callback")
-    public String kakaoLogin(@RequestParam String code, HttpServletResponse response) throws JsonProcessingException {
+    @GetMapping("/api/user/kakao/callback")
+    @CrossOrigin(origins = "http://localhost:3000", exposedHeaders = "Authorization")
+    public ResponseEntity<Void> kakaoLogin(@RequestParam String code, HttpServletResponse response) throws JsonProcessingException {
         String token = kakaoLoginService.kakaoLogin(code);
-        response.addHeader(JwtUtil.AUTHORIZATION_HEADER, token);
+        HttpHeaders headers = new HttpHeaders();
+        headers.add(JwtUtil.AUTHORIZATION_HEADER, token);
 
-        return "redirect:http://localhost:3000/";
+        // 메인 페이지의 URL로 리다이렉트 응답을 반환
+        String mainPageUrl = "http://localhost:3000/"; // 메인 페이지의 URL
+        headers.add("Location", mainPageUrl);
+        return ResponseEntity.status(HttpStatus.FOUND).headers(headers).build();
     }
+
 }
