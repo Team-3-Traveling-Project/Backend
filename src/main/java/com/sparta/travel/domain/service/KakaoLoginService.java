@@ -41,7 +41,8 @@ public class KakaoLoginService {
 
     @Value("${kakao.redirect-uri}")
     private String redirect_uri;
-    public String kakaoLogin(String code) throws JsonProcessingException {
+    public MsgResponseDto kakaoLogin(String code,HttpServletResponse response) throws JsonProcessingException {
+
         String accessToken = getToken(code); // 카카오 인가 토큰 발급
 
         KakaoInfoDto kakaoInfoDto = getKakaoInfo(accessToken); // 유저정보 가져오기
@@ -49,8 +50,9 @@ public class KakaoLoginService {
         User kakaoUser = registerKakaoUserIfNeeded(kakaoInfoDto); // 로그인 하기 (이메일 없음 DB에 저장하고 로그인 없으면 그냥 로그인)
 
         String token = jwtUtil.createToken(kakaoUser.getUserId(),kakaoUser.getRole());  // 직접 만든 토큰을 헤더에 넣기
+        response.addHeader(JwtUtil.AUTHORIZATION_HEADER,token);
 
-        return token;
+        return new MsgResponseDto(HttpServletResponse.SC_OK,"로그인 성공했습니다.");
     }
 
     private String getToken(String code) throws JsonProcessingException{
