@@ -55,8 +55,8 @@ public class WebSecurityConfig {
     public CorsConfigurationSource configurationSource() {
         CorsConfiguration configuration = new CorsConfiguration();
 
-        //configuration.setAllowedOrigins(Arrays.asList("http://day-trip.s3-website.ap-northeast-2.amazonaws.com"));
-        configuration.setAllowedOrigins(Arrays.asList("http://localhost:3000"));
+        configuration.setAllowedOrigins(Arrays.asList("http://day-trip.s3-website.ap-northeast-2.amazonaws.com", "http://localhost:3000"));
+
         configuration.setAllowedMethods(Arrays.asList("GET", "POST", "PUT", "DELETE", "PATCH", "OPTIONS"));
         //configuration.setAllowedHeaders(Arrays.asList("Authorization", "Cache-Control", "Content-Type"));
         configuration.setAllowedHeaders(Arrays.asList("*"));
