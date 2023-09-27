@@ -17,6 +17,8 @@ public class BookmarkResponseDto {
     private String group_name;
     private String image_url;
     private String city;
+    private boolean checked;
+    private String place_id;
 
 
     public BookmarkResponseDto(Bookmark bookmark) {
@@ -30,5 +32,7 @@ public class BookmarkResponseDto {
         this.group_name = bookmark.getGroup_name();
         this.image_url = bookmark.getImg_url();
         this.city = bookmark.getCity();
+        this.checked = bookmark.isChecked();
+        this.place_id = bookmark.getPlace_id();
     }
 }

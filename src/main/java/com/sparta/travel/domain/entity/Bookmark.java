@@ -40,6 +40,12 @@ public class Bookmark {
     @Column(nullable = false,length = 1000)
     private String img_url;
 
+    @Column(nullable = false)
+    private boolean checked;
+
+    @Column(nullable = false)
+    private String place_id;
+
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id", nullable = false)
     private User user;
@@ -52,6 +58,8 @@ public class Bookmark {
         this.y = bookmarkRequestDto.getY();
         this.city = bookmarkRequestDto.getCity();
         this.img_url = bookmarkRequestDto.getImg_url();
+        this.checked = bookmarkRequestDto.isChecked();
+        this.place_id = bookmarkRequestDto.getPlace_id();
         this.group_name = (bookmarkRequestDto.getGroup_name()==null||bookmarkRequestDto.getGroup_name().isEmpty())?"기타": bookmarkRequestDto.getGroup_name();
         this.user = user;
     }

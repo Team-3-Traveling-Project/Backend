@@ -12,4 +12,6 @@ public class BookmarkRequestDto {
     private String city;
     private String group_name;
     private String img_url;
+    private boolean checked;
+    private String place_id;
 }
