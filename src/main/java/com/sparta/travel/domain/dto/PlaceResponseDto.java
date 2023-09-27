@@ -14,6 +14,7 @@ public class PlaceResponseDto {
     private String y;
     private String group_name;
     private String img_url;
+    private boolean checked;
 
 
     public PlaceResponseDto(Place place){
@@ -26,5 +27,6 @@ public class PlaceResponseDto {
         this.y = place.getY();
         this.group_name = place.getGroup_name();
         this.img_url = place.getImg_url();
+        this.checked = place.isChecked();
     }
 }

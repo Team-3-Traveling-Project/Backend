@@ -39,6 +39,9 @@ public class Place {
     @Column(name = "group_name",nullable = false)
     private String group_name;
 
+    @Column(nullable = false)
+    private boolean checked;
+
     @ManyToOne
     @JoinColumn(name = "plan_id")
     private Plan plan;
