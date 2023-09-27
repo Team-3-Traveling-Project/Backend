@@ -14,4 +14,5 @@ public class PlaceRequestDto {
     private String y;
     private String img_url;
     private boolean checked;
+    private boolean liked;
 }

@@ -19,7 +19,7 @@ public class BookmarkResponseDto {
     private String city;
     private boolean checked;
     private String place_id;
-    private boolean like;
+    private boolean liked;
 
 
     public BookmarkResponseDto(Bookmark bookmark) {
@@ -35,6 +35,6 @@ public class BookmarkResponseDto {
         this.city = bookmark.getCity();
         this.checked = bookmark.isChecked();
         this.place_id = bookmark.getPlace_id();
-        this.like = bookmark.isLike();
+        this.liked = bookmark.isLiked();
     }
 }

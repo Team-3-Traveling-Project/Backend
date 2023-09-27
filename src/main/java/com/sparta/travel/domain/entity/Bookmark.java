@@ -47,7 +47,7 @@ public class Bookmark {
     private String place_id;
 
     @Column(nullable = false)
-    private boolean like;
+    private boolean liked;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id", nullable = false)
@@ -63,6 +63,7 @@ public class Bookmark {
         this.img_url = bookmarkRequestDto.getImg_url();
         this.checked = bookmarkRequestDto.isChecked();
         this.place_id = bookmarkRequestDto.getPlace_id();
+        this.liked = bookmarkRequestDto.isLiked();
         this.group_name = (bookmarkRequestDto.getGroup_name()==null||bookmarkRequestDto.getGroup_name().isEmpty())?"기타": bookmarkRequestDto.getGroup_name();
         this.user = user;
     }

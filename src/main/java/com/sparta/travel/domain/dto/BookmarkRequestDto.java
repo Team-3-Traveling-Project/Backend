@@ -14,5 +14,5 @@ public class BookmarkRequestDto {
     private String img_url;
     private boolean checked;
     private String place_id;
-    private boolean like;
+    private boolean liked;
 }

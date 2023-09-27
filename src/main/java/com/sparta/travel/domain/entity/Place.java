@@ -42,6 +42,9 @@ public class Place {
     @Column(nullable = false)
     private boolean checked;
 
+    @Column(nullable = false)
+    private boolean liked;
+
     @ManyToOne
     @JoinColumn(name = "plan_id")
     private Plan plan;
