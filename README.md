@@ -1,1 +1,3 @@
-# Backend
+#  DAY-TRIP
+
+#프로젝트 소개
