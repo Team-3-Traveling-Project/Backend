@@ -1,7 +1,9 @@
 ## DAY-TRIP
 ### 프로젝트 소개
 > 시간 내기 힘든 **바쁜 현대인을 위한 삶 속에서 한 줄기의 힐링**이 되고자 **지역별 추천 리스트**를 통해 당일치기 여행계획을 세우거나 가보고 싶은 곳을 북마크로 
-저장하여 **나만의 여행일정 관리를 할 수 있는 플랫폼** 입니다!
+저장하여 **나만의 여행일정 관리를 할 수 있는 플랫폼** 입니다! 
+
+   ### [3조 S.A](https://www.notion.so/S-A-0eafac449fd749f3a40a1f6ab234ab55)
 <hr>
 
 ### 메인페이지
@@ -29,9 +31,9 @@
 <img src="https://i.ibb.co/QMCsQZT/image.png" alt="image" border="0">
 <hr>
 
-
 ### ERD Diagram
 <img src="https://i.ibb.co/DbwXht0/erd.png" alt="erd" border="0">
 <hr>
-### [3조 S.A](https://www.notion.so/S-A-0eafac449fd749f3a40a1f6ab234ab55)
+
+
 
