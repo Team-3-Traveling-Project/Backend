@@ -28,8 +28,8 @@ import java.util.Optional;
 @Transactional
 @RequiredArgsConstructor
 public class UserService {
-    @Autowired
-    private S3Uploader s3Uploader;
+
+    private final S3Uploader s3Uploader;
     private final UserRepository userRepository;
     private final PasswordEncoder passwordEncoder;
     private final BookmarkRepository bookmarkRepository;
